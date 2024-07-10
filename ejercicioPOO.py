@@ -37,3 +37,24 @@ class Revista(Publicacion):
 
     def mostrar_informacion(self):
         print(f"Revista: {self._titulo}, Autor: {self._autor}, Año: {self._año}, Número de Edición: {self._numero_edicion}")
+
+
+# clase usuario
+
+class Usuario:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self._prestamos = []
+
+    def tomar_prestado(self, publicacion):
+        self._prestamos.append(publicacion)
+        print(f"{self.nombre} ha tomado prestado '{publicacion._titulo}'")
+
+    def devolver_publicacion(self, publicacion):
+        if publicacion in self._prestamos:
+            self._prestamos.remove(publicacion)
+            print(f"{self.nombre} ha devuelto '{publicacion._titulo}'")
+        else:
+            print(f"{self.nombre} no ha tomado prestados los siguientes titulos:")
+            for publicacion in self._prestamos:
+                publicacion.mostrar_informacion()
